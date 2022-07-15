@@ -4,7 +4,6 @@ class Artigo
 {
     private $mysql;
 
-
     public function __construct(mysqli $mysql)
     {
         $this->mysql = $mysql;
@@ -49,6 +48,4 @@ class Artigo
 
         return $artigo;
     }
-
-
 }
