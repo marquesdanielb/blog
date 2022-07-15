@@ -10,6 +10,21 @@ class Artigo
         $this->mysql = $mysql;
     }
 
+    public function criarArtigo(string $titulo, string $conteudo): void
+    {
+        $novoArtigo = $this->mysql->prepare("INSERT INTO artigos (titulo, conteudo) VALUES (?,?);");
+        $novoArtigo->bind_param('ss', $titulo, $conteudo);
+        $novoArtigo->execute();
+
+    }
+
+    public function removerArtigo(string $id): void
+    {
+        $removerArtigo = $this->mysql->prepare('DELETE FROM artigos WHERE id = ?');
+        $removerArtigo->bind_param('s', $id);
+        $removerArtigo->execute();
+    }
+
     public function exibirTodos()
     {
         $resultado = $this->mysql->query('SELECT * FROM artigos');
