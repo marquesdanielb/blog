@@ -2,8 +2,9 @@
 require 'src/Artigo.php';
 include 'config.php';
 
-$artigo = new Artigo($mysql);
-$artigo->exibirArtigo($_GET['id']);
+$obj_artigo = new Artigo($mysql);
+$artigo = $obj_artigo->exibirArtigo($_GET['id']);
+
 ?>
 
 <!DOCTYPE html>

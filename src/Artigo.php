@@ -20,9 +20,13 @@ class Artigo
 
     public function exibirArtigo(string $id): array
     {
-        $resultado = $this->mysql->query('SELECT * FROM artigos WHERE id='.$id);
-        $artigo = $resultado->fetch_assoc();
+        $selecionarArtigo = $this->mysql->prepare('SELECT * FROM artigos WHERE id = ?');
+        $selecionarArtigo->bind_param('s', $id);
+        $selecionarArtigo->execute();
+        $artigo = $selecionarArtigo->get_result()->fetch_assoc();
 
         return $artigo;
     }
+
+
 }
