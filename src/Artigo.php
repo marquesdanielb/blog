@@ -25,7 +25,14 @@ class Artigo
         $removerArtigo->execute();
     }
 
-    public function exibirTodos()
+    public function editaArtigo(string $id, string $titulo, string $conteudo): void
+    {
+        $editaArtigo = $this->mysql->prepare("UPDATE artigos SET titulo = ?, conteudo = ? WHERE id = ?;");
+        $editaArtigo->bind_param('sss', $titulo, $conteudo, $id);
+        $editaArtigo->execute();
+    }
+
+    public function exibirTodos(): array
     {
         $resultado = $this->mysql->query('SELECT * FROM artigos');
         $artigos = $resultado->fetch_all(MYSQLI_ASSOC);
